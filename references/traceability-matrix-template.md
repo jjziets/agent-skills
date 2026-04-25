@@ -47,9 +47,9 @@ Failure signal:
 
 ## Traceability Matrix
 
-| Requirement | Need | Design / ADR | Plan / Task | Implementation | Verification | Validation | Status | Gaps |
-|---|---|---|---|---|---|---|---|---|
-| SREQ-001 | NEED-001 | ADR-001 | TASK-001 | `src/module/file.ts` | VER-001 | VAL-001 | Draft | GAP-001 |
+| Requirement | Need | Design / ADR | Plan / Task | Implementation | Verification | Validation | Owner | Status | Gaps |
+|---|---|---|---|---|---|---|---|---|---|
+| SREQ-001 | NEED-001 | ADR-001 | TASK-001 | `src/module/file.ts` | VER-001 | VAL-001 |  | Draft | GAP-001 |
 
 ## Document Chain Links
 
@@ -75,9 +75,9 @@ Result records may be acceptance test results, verification output, or acceptanc
 
 ## Verification Evidence
 
-| ID | Requirement | Method | Evidence | Result | Notes |
-|---|---|---|---|---|---|
-| VER-001 | SREQ-001 | Unit / integration / E2E / build / static analysis / inspection |  | Pending |  |
+| ID | Requirement | Method | Evidence | Result | Date / Session | Notes |
+|---|---|---|---|---|---|---|
+| VER-001 | SREQ-001 | Unit / integration / E2E / build / static analysis / inspection |  | Pending |  |  |
 
 ## Validation Evidence
 

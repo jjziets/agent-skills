@@ -126,7 +126,7 @@ Skills are plain Markdown - they work with any agent that accepts system prompts
 
 ## All 21 Skills
 
-The commands above are the entry points. Under the hood, they activate these 21 skills — each one a structured workflow with steps, verification gates, and anti-rationalization tables. You can also reference any skill directly.
+The commands above are the entry points. Under the hood, they activate many of these skills; others are directly usable or activate from task context. These 21 skills are structured workflows with steps, verification gates, and anti-rationalization tables.
 
 ### Define - Clarify what to build
 
@@ -146,6 +146,8 @@ The commands above are the entry points. Under the hood, they activate these 21 
 | Skill | What It Does | Use When |
 |-------|-------------|----------|
 | [systems-engineering-traceability](skills/systems-engineering-traceability/SKILL.md) | Maintains the chain from need to requirement, design, implementation, verification, and validation | Changing meaningful behavior, reviewing agent output, or auditing unclear code |
+
+This cross-cutting skill is used by direct reference or task context; it does not add a slash command.
 
 ### Build - Write the code
 

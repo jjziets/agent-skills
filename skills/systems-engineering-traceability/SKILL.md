@@ -122,7 +122,7 @@ Use feature-scoped IDs when they improve readability, such as `SREQ-AUTH-001` or
 Before creating meaningful behavior, identify at least one of:
 
 - Requirement ID
-- Task ID
+- Task ID linked to a requirement, design decision, risk control, or approved gap
 - Design decision or ADR
 - Risk control
 - Approved traceability gap
