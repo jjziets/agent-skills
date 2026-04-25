@@ -147,7 +147,7 @@ The commands above are the entry points. Under the hood, they activate many of t
 |-------|-------------|----------|
 | [systems-engineering-traceability](skills/systems-engineering-traceability/SKILL.md) | Maintains the chain from need to requirement, design, implementation, verification, and validation | Changing meaningful behavior, reviewing agent output, or auditing unclear code |
 
-This cross-cutting skill is used by direct reference or task context; it does not add a slash command.
+This cross-cutting skill is directly usable by agents and can be referenced explicitly when traceability, dark-code review, or requirement-to-implementation evidence is needed. It does not add a slash command or modify lifecycle command wiring.
 
 ### Build - Write the code
 

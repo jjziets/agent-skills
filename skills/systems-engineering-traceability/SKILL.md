@@ -119,15 +119,17 @@ Use feature-scoped IDs when they improve readability, such as `SREQ-AUTH-001` or
 
 ### 5. Enforce the No-Orphan-Implementation Gate
 
-Before creating meaningful behavior, identify at least one of:
+Before creating meaningful behavior, identify at least one source of system authority:
 
 - Requirement ID
-- Task ID linked to a requirement, design decision, risk control, or approved gap
 - Design decision or ADR
 - Risk control
 - Approved traceability gap
+- Task ID that itself links to one of the above
 
-If none exists, stop and ask the human whether to create a requirement, approve a gap, or drop the behavior.
+A Task ID alone is not sufficient traceability. Implementation tasks are work packages, not sources of system authority. If a task cannot be traced back to a requirement, design decision, risk control, or approved gap, then any implementation produced by that task is still orphaned.
+
+If no source of system authority exists, stop and ask the human whether to create a requirement, approve a gap, or drop the behavior.
 
 Private helpers do not need direct top-level requirement IDs. They inherit traceability through the behavior, module, interface, or risk control they support.
 
