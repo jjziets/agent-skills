@@ -124,9 +124,9 @@ Skills are plain Markdown - they work with any agent that accepts system prompts
 
 ---
 
-## All 20 Skills
+## All 21 Skills
 
-The commands above are the entry points. Under the hood, they activate these 20 skills — each one a structured workflow with steps, verification gates, and anti-rationalization tables. You can also reference any skill directly.
+The commands above are the entry points. Under the hood, they activate these 21 skills — each one a structured workflow with steps, verification gates, and anti-rationalization tables. You can also reference any skill directly.
 
 ### Define - Clarify what to build
 
@@ -140,6 +140,12 @@ The commands above are the entry points. Under the hood, they activate these 20 
 | Skill | What It Does | Use When |
 |-------|-------------|----------|
 | [planning-and-task-breakdown](skills/planning-and-task-breakdown/SKILL.md) | Decompose specs into small, verifiable tasks with acceptance criteria and dependency ordering | You have a spec and need implementable units |
+
+### Cross-cutting - Preserve traceability
+
+| Skill | What It Does | Use When |
+|-------|-------------|----------|
+| [systems-engineering-traceability](skills/systems-engineering-traceability/SKILL.md) | Maintains the chain from need to requirement, design, implementation, verification, and validation | Changing meaningful behavior, reviewing agent output, or auditing unclear code |
 
 ### Build - Write the code
 
@@ -192,13 +198,14 @@ Pre-configured specialist personas for targeted reviews:
 
 ---
 
-## Reference Checklists
+## Reference Materials
 
 Quick-reference material that skills pull in when needed:
 
 | Reference | Covers |
 |-----------|--------|
 | [testing-patterns.md](references/testing-patterns.md) | Test structure, naming, mocking, React/API/E2E examples, anti-patterns |
+| [traceability-matrix-template.md](references/traceability-matrix-template.md) | Traceability matrix, document-chain links, V&V evidence, gaps, and dark-code candidates |
 | [security-checklist.md](references/security-checklist.md) | Pre-commit checks, auth, input validation, headers, CORS, OWASP Top 10 |
 | [performance-checklist.md](references/performance-checklist.md) | Core Web Vitals targets, frontend/backend checklists, measurement commands |
 | [accessibility-checklist.md](references/accessibility-checklist.md) | Keyboard nav, screen readers, visual design, ARIA, testing tools |
@@ -240,10 +247,11 @@ Every skill follows a consistent anatomy:
 
 ```
 agent-skills/
-├── skills/                            # 20 core skills (SKILL.md per directory)
+├── skills/                            # 21 core skills (SKILL.md per directory)
 │   ├── idea-refine/                   #   Define
 │   ├── spec-driven-development/       #   Define
 │   ├── planning-and-task-breakdown/   #   Plan
+│   ├── systems-engineering-traceability/ #   Cross-cutting
 │   ├── incremental-implementation/    #   Build
 │   ├── context-engineering/           #   Build
 │   ├── source-driven-development/     #   Build
@@ -263,7 +271,7 @@ agent-skills/
 │   ├── shipping-and-launch/           #   Ship
 │   └── using-agent-skills/            #   Meta: how to use this pack
 ├── agents/                            # 3 specialist personas
-├── references/                        # 4 supplementary checklists
+├── references/                        # Supplementary references and templates
 ├── hooks/                             # Session lifecycle hooks
 ├── .claude/commands/                  # 7 slash commands
 └── docs/                              # Setup guides per tool
