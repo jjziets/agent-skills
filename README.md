@@ -124,9 +124,9 @@ Skills are plain Markdown - they work with any agent that accepts system prompts
 
 ---
 
-## All 21 Skills
+## All 22 Skills
 
-The commands above are the entry points. Under the hood, they activate many of these skills; others are directly usable or activate from task context. These 21 skills are structured workflows with steps, verification gates, and anti-rationalization tables.
+The commands above are the entry points. Under the hood, they activate many of these skills; others are directly usable or activate from task context. These 22 skills are structured workflows with steps, verification gates, and anti-rationalization tables.
 
 ### Define - Clarify what to build
 
