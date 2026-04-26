@@ -131,6 +131,14 @@ flowchart LR
 
 If the diagram and matrix disagree, update the diagram from the matrix. The matrix wins.
 
+## Traceability Debt
+
+Use this table for missing, stale, contradictory, or unapproved trace links. Open traceability debt is not authority.
+
+| Debt ID | Description | Affected IDs | Risk | Owner | Action | Status |
+|---|---|---|---|---|---|---|
+| TD-001 |  | SREQ-001 |  |  |  | Open / Deferred / Closed |
+
 ## Approved Traceability Gaps
 
 Approved gaps may authorize behavior only when explicitly recorded here.
@@ -141,7 +149,7 @@ Approved gaps may authorize behavior only when explicitly recorded here.
 
 A `GAP-*` ID is not valid authority unless it has approval proof: approval ID, approver, date/session, allowed use or scope, and review/expiry condition.
 
-Open traceability debt is not authority. It becomes authority only when explicitly approved as a gap.
+Open traceability debt is not authority. It becomes authority only when explicitly approved as a gap in this section.
 
 ## Dark-Code Candidates
 
@@ -180,8 +188,10 @@ Use these status values consistently:
 | `Implemented` | Implementation artifacts linked. | Files, modules, interfaces, tasks, or config linked to requirement or design IDs. |
 | `Verified` | Technical requirement has evidence. | Test, ATP, build, static analysis, or inspection result linked to the requirement. |
 | `Validated` | Stakeholder need satisfied in context. | Demo, UAT, scenario, operational evidence, telemetry, or accepted validation result. |
+| `Open` | Item is unresolved and still needs action or decision. | Owner, next action, and affected IDs. |
 | `Gap` | Missing, stale, contradictory, or unapproved trace link. | Gap description, risk, owner, and next action. |
 | `Deferred` | Valid trace item intentionally postponed. | Owner, reason, expected follow-up, and accepted risk. |
+| `Closed` | Traceability debt has been resolved or converted. | Resolution note and linked replacement, approval, or retirement evidence. |
 | `Expired` | Approval or accepted gap is no longer valid. | Expiry condition, owner, and required re-approval or closure action. |
 | `Retired` | Requirement, behavior, or artifact no longer active. | Deprecation or removal rationale and impact analysis. |
 
