@@ -1,0 +1,4 @@
+interface:
+  display_name: "Requirements Reviewer"
+  short_description: "Review requirement quality before approval"
+  default_prompt: "Review these requirements and decide whether each is good enough to become approved implementation authority."

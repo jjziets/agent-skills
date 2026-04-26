@@ -124,7 +124,7 @@ Skills are plain Markdown - they work with any agent that accepts system prompts
 
 ---
 
-## All 22 Skills
+## All 23 Skills
 
 The commands above are the entry points. Under the hood, they activate many of these skills; others are directly usable or activate from task context. These 22 skills are structured workflows with steps, verification gates, and anti-rationalization tables.
 
@@ -141,13 +141,14 @@ The commands above are the entry points. Under the hood, they activate many of t
 |-------|-------------|----------|
 | [planning-and-task-breakdown](skills/planning-and-task-breakdown/SKILL.md) | Decompose specs into small, verifiable tasks with acceptance criteria and dependency ordering | You have a spec and need implementable units |
 
-### Cross-cutting - Preserve traceability
+### Cross-cutting - Preserve requirements and traceability
 
 | Skill | What It Does | Use When |
 |-------|-------------|----------|
+| [requirements-reviewer](skills/requirements-reviewer/SKILL.md) | Reviews whether requirements are clear, typed, traceable, verifiable, validatable, and good enough to become approved implementation authority | Reviewing requirements, specs, PRDs, acceptance criteria, or planning docs before traceability and implementation |
 | [systems-engineering-traceability](skills/systems-engineering-traceability/SKILL.md) | Maintains the chain from idea and need to requirement, design, implementation, verification, and validation | Refining ideas that may become work, changing meaningful behavior, reviewing agent output, or auditing unclear code |
 
-This cross-cutting skill is directly usable by agents and can be referenced explicitly when traceability, dark-code review, or requirement-to-implementation evidence is needed. It does not add a slash command or modify lifecycle command wiring.
+These cross-cutting skills are directly usable by agents and can be referenced explicitly when requirement quality, traceability, dark-code review, or requirement-to-implementation evidence is needed. They do not add slash commands or modify lifecycle command wiring.
 
 ### Build - Write the code
 
@@ -215,6 +216,11 @@ Quick-reference material that skills pull in when needed:
 | [performance-checklist.md](references/performance-checklist.md) | Core Web Vitals targets, frontend/backend checklists, measurement commands |
 | [accessibility-checklist.md](references/accessibility-checklist.md) | Keyboard nav, screen readers, visual design, ARIA, testing tools |
 
+The [requirements-reviewer](skills/requirements-reviewer/SKILL.md) skill also
+includes skill-local references for requirement quality rules, requirement
+types and attributes, language patterns, V&V mapping, finding schema, source
+basis, and original review examples.
+
 ---
 
 ## How Skills Work
@@ -252,10 +258,11 @@ Every skill follows a consistent anatomy:
 
 ```
 agent-skills/
-├── skills/                            # 22 core skills (SKILL.md per directory)
+├── skills/                            # 23 core skills (SKILL.md per directory)
 │   ├── idea-refine/                   #   Define
 │   ├── spec-driven-development/       #   Define
 │   ├── planning-and-task-breakdown/   #   Plan
+│   ├── requirements-reviewer/         #   Cross-cutting
 │   ├── systems-engineering-traceability/ #   Cross-cutting
 │   ├── incremental-implementation/    #   Build
 │   ├── context-engineering/           #   Build
