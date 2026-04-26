@@ -45,11 +45,32 @@ Failure signal:
 |---|---|---|---|---|
 | ADR-001 | `docs/decisions/adr-001.md` | SREQ-001 |  | Draft |
 
+## Risk Controls
+
+Risk controls may authorize meaningful behavior only when they are first-class approved trace links.
+
+| Risk ID | Risk Statement | Owner | Mitigation / Control | Linked Requirement(s) or Approved Gap | Evidence Path | Approval Status | Approval ID | Notes |
+|---|---|---|---|---|---|---|---|---|
+| RISK-001 |  |  |  | SREQ-001 / GAP-001 | VER-001 / VAL-001 | Draft / Approved / Retired | APP-001 |  |
+
+A `RISK-*` reference is not valid authority unless it appears in this table with:
+
+- risk statement
+- owner
+- mitigation / control
+- linked requirement or approved gap
+- evidence path
+- approval status
+
+Matrix rows that cite a risk control must point to the corresponding `RISK-*` row in this section.
+
+A bare `RISK-*` ID does not satisfy the no-orphan gate.
+
 ## Traceability Matrix
 
-| ID | Owner | Stakeholder Need | Requirement | Design / ADR | Plan / Task | Implementation | Verification | Validation | Status | Gaps |
-|---|---|---|---|---|---|---|---|---|---|---|
-| SREQ-001 | Platform Team | NEED-001 | Short requirement summary | ADR-001 | TASK-001 | `src/module/file.ts` | VER-001 | VAL-001 | Draft | GAP-001 |
+| ID | Owner | Stakeholder Need | Requirement | Design / ADR | Risk Control | Plan / Task | Implementation | Verification | Validation | Status | Gaps |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| SREQ-001 | Platform Team | NEED-001 | Short requirement summary | ADR-001 | RISK-001 | TASK-001 | `src/module/file.ts` | VER-001 | VAL-001 | Draft | GAP-001 |
 
 ## Document Chain Links
 
@@ -156,16 +177,14 @@ Use these status values consistently:
 
 ## Lightweight Mode
 
-For a small change, use a compact trace note instead of the full matrix:
+For a small change, use a minimal matrix row instead of the full matrix:
 
 ```markdown
-Traceability note:
-- Need / requirement:
-- Design decision / risk control:
-- Implementation:
-- Verification:
-- Validation or validation path:
-- Gaps or human decisions:
+| ID | Owner | Need / Requirement | Design / Risk Control | Implementation | Verification | Validation or Path | Status | Gaps |
+|---|---|---|---|---|---|---|---|---|
+| SREQ-001 |  |  |  |  |  |  | Draft |  |
 ```
+
+An optional note may explain the row, but it does not replace the matrix artifact.
 
 Do not use Lite mode to hide unclear or risky behavior. If the reason, verification, validation, or owner is unclear, switch to Standard or Audit mode.

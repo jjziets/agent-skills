@@ -207,6 +207,7 @@ Quick-reference material that skills pull in when needed:
 | Reference | Covers |
 |-----------|--------|
 | [testing-patterns.md](references/testing-patterns.md) | Test structure, naming, mocking, React/API/E2E examples, anti-patterns |
+| [systems-engineering-traceability-operating-model.md](references/systems-engineering-traceability-operating-model.md) | Agent-facing traceability lifecycle rules, authority model, V&V distinction, and source boundary |
 | [traceability-matrix-template.md](references/traceability-matrix-template.md) | Traceability matrix, document-chain links, V&V evidence, gaps, and dark-code candidates |
 | [security-checklist.md](references/security-checklist.md) | Pre-commit checks, auth, input validation, headers, CORS, OWASP Top 10 |
 | [performance-checklist.md](references/performance-checklist.md) | Core Web Vitals targets, frontend/backend checklists, measurement commands |

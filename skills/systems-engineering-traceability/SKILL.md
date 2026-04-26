@@ -44,6 +44,8 @@ ATP means acceptance test plan or acceptance test procedure. Results may be acce
 
 The Markdown traceability matrix is the audit record for trace links, status, evidence references, gaps, and human decisions. Source artifacts remain authoritative for their own detailed content: requirements live in specs, design rationale in ADRs, procedures in ATPs, and measured outcomes in result records. Mermaid diagrams are visual views only.
 
+For the agent-facing lifecycle rules, use `references/systems-engineering-traceability-operating-model.md`.
+
 For a reusable matrix and diagram shape, use `references/traceability-matrix-template.md`.
 
 ## Process
@@ -61,7 +63,7 @@ Use the lightest mode that preserves the chain. Do not trace every line or every
 
 ### 2. Set Up or Update the Traceability Artifact
 
-For Standard and Audit work, create or update:
+When this skill is used, create or update a traceability matrix artifact. For Standard and Audit work, use:
 
 ```text
 docs/traceability/[scope].md
@@ -84,7 +86,7 @@ The artifact should include only the sections needed for the work:
 - Dark-code candidates
 - Human decisions required
 
-Lite mode may use a compact note in the spec, plan, PR description, or review comment instead of a full matrix.
+Lite mode may use a minimal matrix row in the existing traceability artifact, spec, plan, PR description, or review comment instead of a full matrix. It must not skip the matrix artifact entirely.
 
 ### 3. Use Stable IDs
 
@@ -111,7 +113,7 @@ Use feature-scoped IDs when they improve readability, such as `SREQ-AUTH-001` or
 | Lifecycle phase | Agent question | Required trace update | Block condition |
 |---|---|---|---|
 | Spec | What stakeholder need and success signal justify this behavior? | Capture or reuse need and requirement IDs; mark inferred items as `Draft`. | Requirement is ambiguous, untestable, contradictory, or unapproved. |
-| Plan | Which requirement IDs does each task satisfy? | Link plan/task IDs, acceptance criteria, likely artifacts, verification method, and validation path. | Task has no requirement, risk control, design decision, or approved gap. |
+| Plan | Which requirement IDs does each task satisfy? | Link plan/task IDs, acceptance criteria, likely artifacts, verification method, and validation path. | Task has no approved requirement, approved design decision, first-class approved risk control, approved gap, or task-authority closure. |
 | Build | Does this implementation still match the traced intent? | Link meaningful files, modules, interfaces, and config to requirement or design IDs; record new gaps immediately. | New meaningful behavior appears without a traced reason. |
 | Test | What ATP, test, or evidence proves the requirement? | Link ATP entries, test paths, commands, results, and verification evidence to requirement IDs. | Verification evidence is missing for implemented behavior. |
 | Review | Can a reviewer walk backward and forward through the chain? | Review provenance, links, gaps, inferred requirements, and dark-code candidates. | Unapproved inferred links, unexplained behavior, or unresolved dark-code candidates remain. |
@@ -119,15 +121,15 @@ Use feature-scoped IDs when they improve readability, such as `SREQ-AUTH-001` or
 
 ### 5. Enforce the No-Orphan-Implementation Gate
 
-Before creating meaningful behavior, identify at least one source of system authority:
+Before creating meaningful behavior, identify at least one approved source of system authority:
 
-- Requirement ID
-- Design decision or ADR
-- Risk control
+- Approved requirement ID
+- Approved design decision or ADR
+- First-class approved risk control
 - Approved traceability gap
-- Task ID that itself links to one of the above
+- Task ID that itself closes directly to one of the above
 
-A Task ID alone is not sufficient traceability. Implementation tasks are work packages, not sources of system authority. If a task cannot be traced back to a requirement, design decision, risk control, or approved gap, then any implementation produced by that task is still orphaned.
+A Task ID alone is not sufficient traceability. A bare `RISK-*` ID is not sufficient traceability. Implementation tasks are work packages, not sources of system authority. If a task cannot be traced back to an approved requirement, approved design decision, first-class approved risk control, or approved gap, then any implementation produced by that task is still orphaned.
 
 If no source of system authority exists, stop and ask the human whether to create a requirement, approve a gap, or drop the behavior.
 
@@ -202,9 +204,33 @@ For ordinary implementation changes that do not affect those triggers, record a 
 
 ### 10. Apply the Engineering-Complete Gate
 
-Before calling the work complete, confirm:
+Before this skill is complete, every new or changed meaningful behavior must trace to at least one valid approved authority.
 
-- Every meaningful behavior has a requirement, design decision, risk control, or approved gap
+Valid approved authority means one of:
+
+- Approved requirement
+- Approved ADR or design decision
+- First-class approved risk control
+- Approved traceability gap
+- Task ID that closes directly to one of the approved authorities above
+
+The following are not valid authority by themselves:
+
+- Bare task ID
+- Bare stakeholder need
+- Draft requirement
+- Inferred requirement
+- Unapproved design note
+- Bare `RISK-*` ID
+- Review finding
+- Traceability debt item
+- Implementation convenience
+
+If a link is inferred, draft, stale, ambiguous, or not approved, the behavior remains orphaned until human approval resolves it.
+
+Before calling the work complete, also confirm:
+
+- Every meaningful behavior has valid approved authority
 - Every changed requirement has linked implementation coverage
 - Every implemented behavior has verification evidence or a recorded gap
 - Every stakeholder-facing change has validation evidence or an approved validation path
@@ -227,8 +253,13 @@ Before calling the work complete, confirm:
 
 ## Red Flags
 
-- New behavior appears during implementation without a requirement, task, design decision, risk control, or approved gap
-- A task has acceptance criteria but no requirement ID or validation path
+- Meaningful behavior traces only to a task ID
+- Meaningful behavior traces only to a stakeholder need without an approved requirement
+- A bare `RISK-*` ID is used as authority
+- A review finding is treated as authority instead of provenance
+- A traceability debt item is treated as authority without being converted into an approved gap
+- A requirement or design link is inferred but not approved
+- A task does not close directly to approved upstream authority
 - A test proves code behavior but not requirement satisfaction
 - A stakeholder-facing change has verification evidence but no validation evidence or validation plan
 - Requirements, plans, ATP entries, or result records use inconsistent IDs
@@ -241,9 +272,9 @@ Before calling the work complete, confirm:
 Before completing work with this skill, confirm:
 
 - [ ] Scope and mode were selected
-- [ ] Stakeholder need, requirement, or approved gap exists for every meaningful behavior
+- [ ] Every new or changed meaningful behavior traces to valid approved authority
 - [ ] Stable IDs are assigned or reused
-- [ ] The traceability matrix or Lite trace note is updated
+- [ ] The traceability matrix is updated; Lite mode uses at least a minimal matrix row
 - [ ] Source artifacts remain authoritative for detailed content
 - [ ] Mermaid, if present, matches the matrix IDs
 - [ ] Requirements docs, plan docs, ATP entries, and result records are linked when they exist
