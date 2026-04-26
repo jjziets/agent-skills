@@ -102,7 +102,8 @@ ADR-001    Architecture decision
 TASK-001   Implementation task
 VER-001    Verification evidence
 VAL-001    Validation evidence
-GAP-001    Traceability gap
+TD-001     Traceability debt
+GAP-001    Approved traceability gap
 DEC-001    Human decision
 ```
 
@@ -142,12 +143,15 @@ Traceability status must move only when evidence exists:
 | Status | Meaning | Required evidence |
 |---|---|---|
 | `Draft` | Proposed or inferred; not yet approved. | Source artifact or agent note plus required human decision. |
-| `Approved` | Accepted requirement, decision, or gap. | Human approval record with approver, date/session, source artifact, and affected IDs. |
+| `Approved` | Accepted requirement, decision, risk control, or approved gap. | Human approval record with approver, date/session, source artifact, and affected IDs. |
 | `Implemented` | Implementation artifacts linked. | Files, modules, interfaces, tasks, or config linked to requirement or design IDs. |
 | `Verified` | Technical requirement has evidence. | Test, ATP, build, static analysis, or manual-inspection result linked to the requirement. |
 | `Validated` | Stakeholder need satisfied in context. | Demo, UAT, scenario, operational evidence, telemetry, or accepted validation result. |
+| `Open` | Item is unresolved and still needs action or decision. | Owner, next action, and affected IDs. |
 | `Gap` | Missing, stale, contradictory, or unapproved trace link. | Gap description, risk, owner, and next action. |
 | `Deferred` | Valid trace item intentionally postponed. | Owner, reason, expected follow-up, and accepted risk. |
+| `Closed` | Traceability debt has been resolved or converted. | Resolution note and linked replacement, approval, or retirement evidence. |
+| `Expired` | Approval or accepted gap is no longer valid. | Expiry condition, owner, and required re-approval or closure action. |
 | `Retired` | Requirement, behavior, or artifact no longer active. | Deprecation or removal rationale and impact analysis. |
 
 Do not mark agent-inferred requirements as approved, verified, or validated without recorded human approval and evidence.
