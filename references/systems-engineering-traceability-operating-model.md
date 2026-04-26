@@ -1,17 +1,21 @@
 # Systems Engineering Traceability Operating Model
 
-This is an original, lightweight operating model for agentic software development.
+Status: Distilled TraceWeaver Core guidance
 
-It is aligned with systems-engineering concepts from ISO/IEC/IEEE 15288, the INCOSE Systems Engineering Handbook, ISO/IEC/IEEE 29148, ISO/IEC/IEEE 15289, and public NASA systems engineering material, but it does not reproduce those standards or handbooks.
+This is original TraceWeaver guidance for agentic software development. It is
+informed by systems-engineering sources, but it does not reproduce protected
+standards, handbooks, tables, or diagrams and does not claim standards
+compliance.
 
-Until reviewed against licensed ground-truth sources, treat this file as project-specific guidance for agent workflows, not as a standards-compliance claim.
+TraceWeaver's purpose is simple: meaningful behavior must trace to approved
+authority, evidence, ownership, and a safe-change story.
 
 ## Lifecycle Chain
 
 Preserve traceability through this chain:
 
 ```text
-intent
+idea or intent
   -> stakeholder need
   -> user requirement
   -> system requirement
@@ -22,7 +26,8 @@ intent
   -> change control
 ```
 
-For projects that keep separate artifacts, preserve document traceability through:
+For projects that use separate documents, preserve this document chain when the
+artifacts exist:
 
 ```text
 requirements document
@@ -32,21 +37,35 @@ requirements document
   -> result record
 ```
 
+ATP means acceptance test plan or acceptance test procedure. Result records may
+be acceptance test results, verification output, validation notes, or acceptance
+test report artifacts.
+
 ## Core Agent Rules
 
-1. Brainstorming creates candidate needs, assumptions, risks, and success signals. It does not create implementation authority.
+1. Ideation and brainstorming create candidate needs, assumptions, risks,
+   success signals, failure signals, and open decisions. They do not create
+   implementation authority.
 
-2. Planning converts approved or candidate needs into requirements, design decisions, ATP or result expectations, verification paths, and validation paths.
+2. Planning converts approved or candidate needs into requirements, design
+   decisions, ATP/result expectations, verification paths, and validation paths.
 
-3. Work agents may only implement meaningful behavior when it traces to approved authority.
+3. Work agents may only implement meaningful behavior when it traces to approved
+   authority.
 
-4. Review findings are provenance, not authority. They become authority only when converted into an approved requirement change, approved design decision, first-class approved risk control, or approved gap.
+4. Review findings are provenance, not authority. They become authority only
+   when converted into an approved requirement change, approved design decision,
+   first-class approved risk control, or approved gap.
 
-5. Requirements may evolve, but they must evolve through explicit change control.
+5. Requirements may evolve, but they must evolve through explicit change
+   control.
 
-6. A task ID alone is not authority. A task only carries authority when it closes directly to approved upstream authority.
+6. A task ID alone is not authority. A task only carries authority when it
+   closes directly to approved upstream authority.
 
-7. A bare `RISK-*` ID is not authority. A risk control only authorizes implementation when it is approved, owned, evidenced, and linked to a requirement or approved gap.
+7. A bare `RISK-*` ID is not authority. A risk control only authorizes
+   implementation when it is approved, owned, evidenced, and linked to a
+   requirement or approved gap.
 
 8. Verification asks whether the team built the thing right.
 
@@ -54,9 +73,38 @@ requirements document
 
 10. Missing traceability must be exposed, not invented.
 
+## Idea Capture Rule
+
+Ideas are first-class lifecycle inputs. They are not authority.
+
+Any agent or skill that creates, refines, selects, ranks, reviews, or summarizes
+ideas for a product, feature, workflow, code change, process change, or agent
+behavior must preserve the idea in systems-engineering form:
+
+- candidate `NEED-*` or problem/opportunity statement
+- stakeholder or user group
+- intended context
+- success signal
+- failure signal
+- key assumptions
+- risk candidates
+- open decisions or approval questions
+- explicit status: `Candidate` or `Draft`
+
+An idea becomes implementation authority only when a later lifecycle step
+converts it into approved authority: approved requirement, approved design
+decision, first-class approved risk control, approved traceability gap, or a
+task that closes directly to one of those authorities.
+
+Do not let an idea-refinement artifact, brainstorm note, roadmap thought, or
+review suggestion silently skip into implementation. If an idea would change
+meaningful behavior, route it through planning and traceability before work
+begins.
+
 ## Valid Authority
 
-Meaningful implementation behavior must link to at least one valid approved authority:
+Meaningful implementation behavior must link to at least one valid approved
+authority:
 
 - approved requirement
 - approved ADR or design decision
@@ -66,24 +114,69 @@ Meaningful implementation behavior must link to at least one valid approved auth
 
 The following are not authority by themselves:
 
-- brainstorm ideas
-- assumptions
-- review findings
-- implementation tasks
-- inferred links
-- draft requirements
-- bare `RISK-*` references
+- brainstorm idea
+- idea-refinement note
+- assumption
+- roadmap note
+- stakeholder need
+- review finding
+- task ID
+- inferred link
+- draft requirement
+- unapproved design note
+- bare `RISK-*` reference
+- traceability debt item
 - test existence without a requirement or design link
 
-If the authority is inferred, mark it `Draft` and ask for human approval before treating it as implementation authority.
+If the authority is inferred, mark it `Draft` and ask for human approval before
+treating it as implementation authority.
+
+## Authority State
+
+Authority is a state transition, not the presence of an ID.
+
+```text
+Candidate / Draft / Provenance
+  -> reviewed by human or project governance
+  -> Approved
+  -> used as implementation authority
+```
+
+Agents may propose requirements, design decisions, risk controls, and gaps. They
+must not silently promote them to approved authority.
+
+## Mode Selection
+
+Use the lightest mode that preserves the chain.
+
+| Mode | Use When | Minimum Traceability |
+|---|---|---|
+| Lite | Small, low-risk work with clear intent and existing authority | One matrix row with authority, implementation, verification, validation path, owner, and status |
+| Standard | New or changed meaningful behavior, interfaces, data flows, workflows, or agent behavior | Full traceability artifact with requirements, design, implementation, V&V, gaps, and decisions |
+| Audit | High-risk, release-critical, compliance-sensitive, owner-unclear, or brownfield work | Full artifact plus dark-code candidates, impact analysis, gap/debt classification, and human decisions |
+
+Lite mode may reduce detail. It must not skip the matrix artifact once the skill
+is used.
+
+## Agent Lifecycle Responsibilities
+
+| Agent Phase | Responsibility | Output |
+|---|---|---|
+| Ideate / Brainstorm | Capture candidate needs, assumptions, risks, success and failure signals, unresolved questions, and not-doing boundaries | Candidate `NEED-*`, assumptions, `RISK-*` candidates, required decisions, `Candidate` / `Draft` status |
+| Plan | Convert approved or candidate context into requirements, authority links, tasks, ATP/result expectations, and validation paths | `UREQ-*`, `SREQ-*`, `ADR-*`, `TASK-*`, `ATP-*`, matrix rows |
+| Work | Implement only behavior backed by valid approved authority | Implementation links and immediate gap updates |
+| Test | Produce verification evidence that points to requirement IDs | `VER-*` rows and result records |
+| Review | Audit the chain in both directions and classify missing traceability | findings, `GAP-*`, `TD-*`, dark-code candidates |
+| Validate / Ship | Record validation evidence or an approved validation path | `VAL-*` rows, owner, status, deferred trigger |
+| Change Control | Convert findings and changes into approved authority, rejected decisions, or visible debt | approval records, retired items, impact analysis |
 
 ## Traceability Matrix
 
-The Markdown traceability matrix is the audit/control surface for the workflow. It records links, status, owners, evidence references, gaps, and human decisions.
+The Markdown traceability matrix is the audit/control surface for the workflow.
+It records links, status, owners, evidence references, gaps, and human
+decisions.
 
-Lite mode may use a minimal matrix row, but it must not skip the matrix artifact entirely when the traceability skill is used. Standard and Audit modes should use the full matrix structure from `references/traceability-matrix-template.md`.
-
-Source artifacts remain authoritative for their own detailed content:
+Source artifacts remain authoritative for their detailed content:
 
 - requirements live in specifications or requirements documents
 - design rationale lives in ADRs or design notes
@@ -92,9 +185,84 @@ Source artifacts remain authoritative for their own detailed content:
 
 The matrix connects those artifacts. It should not rewrite or replace them.
 
+Mermaid diagrams are derived views. If a diagram and the matrix disagree, update
+the diagram from the matrix.
+
+## Original TraceWeaver Diagrams
+
+These diagrams are TraceWeaver-specific views. They are not copies or redraws of
+source diagrams.
+
+### Authority Chain
+
+```mermaid
+flowchart LR
+  intent["Intent / user request"]
+  need["NEED-* stakeholder need"]
+  ureq["UREQ-* user requirement"]
+  sreq["SREQ-* system requirement"]
+  adr["ADR-* design decision"]
+  impl["Implementation artifact"]
+  ver["VER-* verification evidence"]
+  val["VAL-* validation evidence or path"]
+  change["Change control"]
+
+  intent --> need
+  need --> ureq
+  ureq --> sreq
+  sreq --> adr
+  adr --> impl
+  impl --> ver
+  sreq --> ver
+  need --> val
+  ver -. "may inform" .-> val
+  val --> change
+  change --> need
+  change --> sreq
+  change --> adr
+```
+
+### Agent Checkpoints
+
+```mermaid
+flowchart LR
+  idea["Idea: raw concept or opportunity"]
+  brainstorm["Brainstorm: candidate needs, assumptions, risks"]
+  plan["Plan: requirements, authority, ATP/result path"]
+  work["Work: implement approved authority only"]
+  test["Test: record VER-* evidence"]
+  review["Review: audit chain, gaps, dark-code candidates"]
+  validate["Validate / ship: record VAL-* or approved path"]
+  learn["Change control / learning"]
+
+  idea --> brainstorm
+  brainstorm --> plan
+  plan --> work
+  work --> test
+  test --> review
+  review --> validate
+  validate --> learn
+  learn --> idea
+
+  plan -. "missing authority" .-> review
+  work -. "new behavior found" .-> review
+  review -. "approved change" .-> plan
+```
+
+## Brownfield Work
+
+For existing projects that did not start with traceability, do not invent
+historical trace links after the fact.
+
+Record known gaps as traceability debt. Apply strict no-orphan enforcement to
+new or changed meaningful behavior from the chosen baseline forward. Existing
+untraced behavior becomes trace-relevant when new work depends on it, modifies
+it, uses it as authority, or needs it for validation.
+
 ## Change Control
 
-When requirements, design decisions, risks, validation paths, or meaningful behavior change, update the traceability record in the same work cycle.
+When requirements, design decisions, risks, validation paths, or meaningful
+behavior change, update the traceability record in the same work cycle.
 
 If a review finding introduces new scope, convert it into one of:
 
@@ -104,27 +272,28 @@ If a review finding introduces new scope, convert it into one of:
 - approved traceability gap
 - rejected finding with rationale
 
-Do not silently promote a review comment, assumption, or inferred link into authority.
+Do not silently promote a review comment, assumption, or inferred link into
+authority.
 
-## Brownfield Work
+## Supporting Guides
 
-For existing projects that did not start with traceability, do not invent historical trace links after the fact.
+Use these companion distilled guides when more detail is needed:
 
-Record known gaps as traceability debt. Apply strict no-orphan enforcement to new or changed meaningful behavior from the chosen baseline forward. Existing untraced behavior becomes trace-relevant when new work depends on it, modifies it, uses it as authority, or needs it for validation.
+- `traceability-matrix-template.md`
+- `requirements-and-vv-guide.md`
+- `risk-gap-and-change-control-guide.md`
 
-## Reference Basis
+## Source Basis
 
-This operating model is an original, lightweight distillation for agentic software development. It does not reproduce ISO, IEEE, INCOSE, or NASA copyrighted material.
+This operating model is original TraceWeaver guidance. It is informed by
+systems-engineering concepts from official or public source pages, including:
 
-It is informed by the following official or public sources:
-
-| Source | Link | How it is used |
+| Source | Public Link | Use |
 |---|---|---|
-| ISO/IEC/IEEE 15288:2023 - Systems and software engineering - System life cycle processes | https://www.iso.org/standard/81702.html | Primary lifecycle-process reference. Used for high-level alignment only. |
-| IEEE/ISO/IEC 15288-2023 page | https://standards.ieee.org/ieee/15288/10424/ | Alternate official standards entry point. |
-| INCOSE Systems Engineering Handbook, 5th Edition | https://www.incose.org/resources-publications/technical-publications/se-handbook/ | Systems engineering handbook reference aligned with ISO/IEC/IEEE 15288:2023. |
-| INCOSE Systems Engineering Standards page | https://www.incose.org/about-systems-engineering/standards-policies/ | Source list for related SE standards such as 15288 and 15289. |
-| ISO/IEC/IEEE 29148:2018 - Requirements engineering | https://www.iso.org/standard/72089.html | Requirements engineering reference. |
-| IEEE/ISO/IEC 29148 page | https://standards.ieee.org/ieee/29148/12262 | Alternate official requirements-engineering source entry. |
-| NASA Requirements Verification Matrix appendix | https://www.nasa.gov/reference/appendix-d-requirements-verification-matrix/ | Public practical example for requirement IDs and verification methods. |
-| NASA Systems Engineering Handbook material | https://www.nasa.gov/reference/system-engineering-handbook-appendix/ | Public practical examples for V&V, traceability, and lifecycle evidence. |
+| ISO/IEC/IEEE 15288:2023 | https://www.iso.org/standard/81702.html | Lifecycle-process alignment only; no local extraction claim from protected wrapper |
+| INCOSE Systems Engineering Handbook | https://www.incose.org/resources-publications/technical-publications/se-handbook/ | Lifecycle, tailoring, risk, technical review, and systems-engineering practice context |
+| INCOSE Requirements Working Group | https://www.incose.org/group/requirements-working-group/ | Public context for needs, requirements, verification, validation, and data-centric requirements work |
+| IEEE 15288.1 / 15288.2 standards page | https://standards.ieee.org/ieee/15288.2/5705/ | Application and review/audit concepts used only as generic evidence and tailoring guidance |
+
+TraceWeaver does not reproduce those materials and does not claim compliance
+with them.

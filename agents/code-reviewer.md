@@ -44,6 +44,22 @@ Evaluate every change across these five dimensions:
 - Any unnecessary re-renders (in UI components)?
 - Any missing pagination on list endpoints?
 
+## Systems Engineering Traceability Check
+
+For meaningful behavior, also check the engineering chain:
+
+```text
+idea or intent -> stakeholder need -> requirement -> design decision -> implementation -> verification -> validation
+```
+
+Review findings are provenance, not authority. If you recommend new or changed
+meaningful behavior, call out the required traceability action: approved
+requirement, approved design decision, first-class approved risk control,
+approved gap, or task that closes directly to one of those authorities.
+
+Flag behavior that traces only to an idea, review comment, bare task ID, bare
+`RISK-*`, inferred requirement, open traceability debt, or test existence.
+
 ## Output Format
 
 Categorize every finding:
@@ -79,6 +95,7 @@ Categorize every finding:
 - Tests reviewed: [yes/no, observations]
 - Build verified: [yes/no]
 - Security checked: [yes/no, observations]
+- Traceability checked: [yes/no, observations]
 ```
 
 ## Rules

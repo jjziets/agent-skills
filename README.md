@@ -132,7 +132,7 @@ The commands above are the entry points. Under the hood, they activate many of t
 
 | Skill | What It Does | Use When |
 |-------|-------------|----------|
-| [idea-refine](skills/idea-refine/SKILL.md) | Structured divergent/convergent thinking to turn vague ideas into concrete proposals | You have a rough concept that needs exploration |
+| [idea-refine](skills/idea-refine/SKILL.md) | Structured divergent/convergent thinking that turns vague ideas into candidate needs, assumptions, risks, and open decisions | You have a rough concept that needs exploration |
 | [spec-driven-development](skills/spec-driven-development/SKILL.md) | Write a PRD covering objectives, commands, structure, code style, testing, and boundaries before any code | Starting a new project, feature, or significant change |
 
 ### Plan - Break it down
@@ -145,7 +145,7 @@ The commands above are the entry points. Under the hood, they activate many of t
 
 | Skill | What It Does | Use When |
 |-------|-------------|----------|
-| [systems-engineering-traceability](skills/systems-engineering-traceability/SKILL.md) | Maintains the chain from need to requirement, design, implementation, verification, and validation | Changing meaningful behavior, reviewing agent output, or auditing unclear code |
+| [systems-engineering-traceability](skills/systems-engineering-traceability/SKILL.md) | Maintains the chain from idea and need to requirement, design, implementation, verification, and validation | Refining ideas that may become work, changing meaningful behavior, reviewing agent output, or auditing unclear code |
 
 This cross-cutting skill is directly usable by agents and can be referenced explicitly when traceability, dark-code review, or requirement-to-implementation evidence is needed. It does not add a slash command or modify lifecycle command wiring.
 
@@ -209,6 +209,8 @@ Quick-reference material that skills pull in when needed:
 | [testing-patterns.md](references/testing-patterns.md) | Test structure, naming, mocking, React/API/E2E examples, anti-patterns |
 | [systems-engineering-traceability-operating-model.md](references/systems-engineering-traceability-operating-model.md) | Agent-facing traceability lifecycle rules, authority model, V&V distinction, and source boundary |
 | [traceability-matrix-template.md](references/traceability-matrix-template.md) | Traceability matrix, document-chain links, V&V evidence, gaps, and dark-code candidates |
+| [requirements-and-vv-guide.md](references/requirements-and-vv-guide.md) | Requirement quality, inferred requirements, ATP/result records, verification evidence, and validation scenarios |
+| [risk-gap-and-change-control-guide.md](references/risk-gap-and-change-control-guide.md) | Approved risk controls, approved gaps, traceability debt, dark-code candidates, and change impact |
 | [security-checklist.md](references/security-checklist.md) | Pre-commit checks, auth, input validation, headers, CORS, OWASP Top 10 |
 | [performance-checklist.md](references/performance-checklist.md) | Core Web Vitals targets, frontend/backend checklists, measurement commands |
 | [accessibility-checklist.md](references/accessibility-checklist.md) | Keyboard nav, screen readers, visual design, ARIA, testing tools |

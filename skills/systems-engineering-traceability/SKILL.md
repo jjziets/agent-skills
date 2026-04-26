@@ -1,6 +1,6 @@
 ---
 name: systems-engineering-traceability
-description: Maintains traceability for agent-generated behavior from stakeholder need through requirement, design, implementation, verification, and validation. Use when starting or changing meaningful behavior, reviewing unclear code, auditing agent output, planning verification, preparing release evidence, or when code lacks a clear requirement, test, validation path, or owner.
+description: Maintains traceability for agent-generated behavior from idea and stakeholder need through requirement, design, implementation, verification, and validation. Use when refining ideas that may become work, starting or changing meaningful behavior, reviewing unclear code, auditing agent output, planning verification, preparing release evidence, or when code lacks a clear requirement, test, validation path, or owner.
 ---
 
 # Systems Engineering Traceability
@@ -9,12 +9,14 @@ description: Maintains traceability for agent-generated behavior from stakeholde
 
 Maintain the engineering chain that explains why meaningful behavior exists, what requirement it satisfies, where it is implemented, how it is verified, and how it is validated. The goal is to prevent dark code: behavior that runs but cannot be traced to a need, requirement, design decision, evidence, or owner.
 
-This skill is a lifecycle companion to `spec-driven-development`, `planning-and-task-breakdown`, `incremental-implementation`, `test-driven-development`, `documentation-and-adrs`, `code-review-and-quality`, and `shipping-and-launch`. It does not replace those skills; it keeps their outputs connected.
+This skill is a lifecycle companion to `idea-refine`, `spec-driven-development`, `planning-and-task-breakdown`, `incremental-implementation`, `test-driven-development`, `documentation-and-adrs`, `code-review-and-quality`, and `shipping-and-launch`. It does not replace those skills; it keeps their outputs connected.
 
 ## When to Use
 
 Use this skill when:
 
+- Refining, selecting, or summarizing an idea that may become product, project,
+  workflow, code, process, or agent behavior
 - Starting or changing a feature, module, service, public interface, data flow, automation, or agent workflow
 - Modifying behavior that affects users, data, security, operations, integrations, or release readiness
 - Reviewing code written by an agent or human where the reason for the behavior is unclear
@@ -31,7 +33,7 @@ Use Lite mode for ordinary small changes with clear intent. Use Standard mode fo
 Maintain this chain:
 
 ```text
-Intent -> stakeholder need -> requirement -> design decision -> implementation -> verification -> validation
+Idea/intent -> stakeholder need -> requirement -> design decision -> implementation -> verification -> validation
 ```
 
 For projects with separate documents, keep this chain connected when those artifacts exist:
@@ -47,6 +49,10 @@ The Markdown traceability matrix is the audit record for trace links, status, ev
 For the agent-facing lifecycle rules, use `references/systems-engineering-traceability-operating-model.md`.
 
 For a reusable matrix and diagram shape, use `references/traceability-matrix-template.md`.
+
+For requirement quality, ATP/result records, and verification/validation evidence, use `references/requirements-and-vv-guide.md`.
+
+For risk controls, approved gaps, traceability debt, dark-code candidates, and change control, use `references/risk-gap-and-change-control-guide.md`.
 
 ## Process
 
@@ -113,6 +119,7 @@ Use feature-scoped IDs when they improve readability, such as `SREQ-AUTH-001` or
 
 | Lifecycle phase | Agent question | Required trace update | Block condition |
 |---|---|---|---|
+| Ideate | What candidate need, assumption, risk, success signal, and failure signal does this idea represent? | Capture idea output as candidate `NEED-*`, assumptions, `RISK-*` candidates, open decisions, and `Candidate` / `Draft` status. | Idea is treated as implementation authority or skips directly into build work. |
 | Spec | What stakeholder need and success signal justify this behavior? | Capture or reuse need and requirement IDs; mark inferred items as `Draft`. | Requirement is ambiguous, untestable, contradictory, or unapproved. |
 | Plan | Which requirement IDs does each task satisfy? | Link plan/task IDs, acceptance criteria, likely artifacts, verification method, and validation path. | Task has no approved requirement, approved design decision, first-class approved risk control, approved gap, or task-authority closure. |
 | Build | Does this implementation still match the traced intent? | Link meaningful files, modules, interfaces, and config to requirement or design IDs; record new gaps immediately. | New meaningful behavior appears without a traced reason. |
@@ -220,6 +227,9 @@ Valid approved authority means one of:
 
 The following are not valid authority by themselves:
 
+- Idea-refinement note
+- Brainstorm note
+- Roadmap thought
 - Bare task ID
 - Bare stakeholder need
 - Draft requirement
@@ -259,6 +269,7 @@ Before calling the work complete, also confirm:
 
 - Meaningful behavior traces only to a task ID
 - Meaningful behavior traces only to a stakeholder need without an approved requirement
+- Meaningful behavior traces only to an idea, brainstorm note, or roadmap thought
 - A bare `RISK-*` ID is used as authority
 - A review finding is treated as authority instead of provenance
 - A traceability debt item is treated as authority without being converted into an approved gap
@@ -276,6 +287,8 @@ Before calling the work complete, also confirm:
 Before completing work with this skill, confirm:
 
 - [ ] Scope and mode were selected
+- [ ] Ideas that may become work are recorded as candidate needs, assumptions,
+      risks, success/failure signals, and open decisions
 - [ ] Every new or changed meaningful behavior traces to valid approved authority
 - [ ] Stable IDs are assigned or reused
 - [ ] The traceability matrix is updated; Lite mode uses at least a minimal matrix row

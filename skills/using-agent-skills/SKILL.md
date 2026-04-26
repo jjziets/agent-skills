@@ -16,7 +16,7 @@ When a task arrives, identify the development phase and apply the corresponding 
 ```
 Task arrives
     │
-    ├── Vague idea/need refinement? ──→ idea-refine
+    ├── Vague idea/need refinement? ──→ idea-refine + systems-engineering-traceability
     ├── Meaningful behavior involved? → systems-engineering-traceability (cross-cutting)
     ├── New project/feature/change? ──→ spec-driven-development
     ├── Have a spec, need tasks? ──────→ planning-and-task-breakdown
@@ -39,7 +39,8 @@ Task arrives
 
 ## Cross-Cutting Traceability Rule
 
-When work creates, changes, removes, reviews, or validates meaningful behavior, also use:
+When work creates, changes, removes, reviews, validates, or selects ideas that
+may become meaningful behavior, also use:
 
 `systems-engineering-traceability`
 
@@ -47,6 +48,7 @@ This is a cross-cutting skill. It does not replace planning, implementation, tes
 
 Use it for:
 
+- product, project, workflow, code, or agent-behavior ideas that may become work
 - new features
 - changed behavior
 - unclear or dark code review
@@ -59,6 +61,12 @@ Use it for:
 Do not require it for formatting-only, spelling-only, or comment-only changes that do not alter behavior.
 
 If meaningful behavior is involved, traceability is a hop, not an optional extra.
+
+Ideas are lifecycle inputs, not authority. When `idea-refine` produces a concept
+that may become work, preserve it as candidate needs, assumptions, risks,
+success/failure signals, open decisions, and not-doing boundaries. Do not let an
+idea, brainstorm note, roadmap thought, or review suggestion skip directly into
+implementation without planning and approved authority.
 
 ## Core Operating Behaviors
 
@@ -150,7 +158,7 @@ These are the subtle errors that look like productivity but create problems:
 
 2. **Skills are workflows, not suggestions.** Follow the steps in order. Don't skip verification steps.
 
-3. **Multiple skills can apply.** A feature implementation might involve `idea-refine` → `spec-driven-development` → `planning-and-task-breakdown` → `systems-engineering-traceability` → `incremental-implementation` → `test-driven-development` → `code-review-and-quality` → `shipping-and-launch` in sequence.
+3. **Multiple skills can apply.** A feature implementation might involve `idea-refine` → `systems-engineering-traceability` → `spec-driven-development` → `planning-and-task-breakdown` → `incremental-implementation` → `test-driven-development` → `code-review-and-quality` → `shipping-and-launch` in sequence.
 
 4. **When in doubt, start with a spec.** If the task is non-trivial and there's no spec, begin with `spec-driven-development`.
 
@@ -160,9 +168,9 @@ For a complete feature, the typical skill sequence is:
 
 ```
 1. idea-refine                 → Refine vague ideas
-2. spec-driven-development     → Define what we're building
-3. planning-and-task-breakdown → Break into verifiable chunks
-4. systems-engineering-traceability → Preserve authority, V&V, and no-orphan links
+2. systems-engineering-traceability → Preserve candidate needs, authority, V&V, and no-orphan links
+3. spec-driven-development     → Define what we're building
+4. planning-and-task-breakdown → Break into verifiable chunks
 5. context-engineering         → Load the right context
 6. source-driven-development   → Verify against official docs
 7. incremental-implementation  → Build slice by slice
@@ -182,7 +190,7 @@ Not every task needs every skill. A bug fix might only need: `debugging-and-erro
 | Define | idea-refine | Refine ideas through structured divergent and convergent thinking |
 | Define | spec-driven-development | Requirements and acceptance criteria before code |
 | Plan | planning-and-task-breakdown | Decompose into small, verifiable tasks |
-| Cross-cutting | systems-engineering-traceability | Approved authority, no-orphan gate, verification, and validation links |
+| Cross-cutting | systems-engineering-traceability | Candidate needs, approved authority, no-orphan gate, verification, and validation links |
 | Build | incremental-implementation | Thin vertical slices, test each before expanding |
 | Build | source-driven-development | Verify against official docs before implementing |
 | Build | context-engineering | Right context at the right time |
@@ -203,6 +211,7 @@ Not every task needs every skill. A bug fix might only need: `debugging-and-erro
 
 | Situation | Skills to consider |
 |---|---|
+| Vague product, project, workflow, or feature idea | `idea-refine`, `systems-engineering-traceability` |
 | New feature or changed behavior | `spec-driven-development`, `planning-and-task-breakdown`, `systems-engineering-traceability` |
 | Implementation work | `incremental-implementation`, `test-driven-development`, `systems-engineering-traceability` |
 | Code review | `code-review-and-quality`, `systems-engineering-traceability` |

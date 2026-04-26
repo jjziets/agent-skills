@@ -20,6 +20,25 @@ Three layers, each with a distinct job:
 
 The user (or a slash command) is the orchestrator. **Personas do not call other personas.** Skills are mandatory hops inside a persona's workflow.
 
+## Systems Engineering Awareness
+
+Every persona must preserve the TraceWeaver operating model when reviewing or
+creating guidance for meaningful behavior:
+
+```text
+idea or intent -> stakeholder need -> requirement -> design decision -> implementation -> verification -> validation
+```
+
+Ideas, review findings, risk notes, test suggestions, and task IDs are
+provenance or draft inputs. They are not implementation authority unless they
+are converted into approved requirements, approved design decisions,
+first-class approved risk controls, approved gaps, or tasks that close directly
+to those approved authorities.
+
+When a persona recommends new or changed meaningful behavior, it must surface
+the needed traceability action instead of silently treating the recommendation
+as authority.
+
 ## When to use each
 
 ### Direct persona invocation
