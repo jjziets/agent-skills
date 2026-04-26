@@ -113,6 +113,7 @@ flowchart LR
     NEED001["NEED-001"]
     SREQ001["SREQ-001"]
     ADR001["ADR-001"]
+    RISK001["RISK-001<br/>Approved risk control"]
     TASK001["TASK-001"]
     IMPL001["Implementation"]
     VER001["VER-001"]
@@ -120,7 +121,9 @@ flowchart LR
 
     NEED001 --> SREQ001
     SREQ001 --> ADR001
+    SREQ001 --> RISK001
     ADR001 --> TASK001
+    RISK001 --> TASK001
     TASK001 --> IMPL001
     IMPL001 --> VER001
     VER001 --> VAL001
@@ -128,11 +131,17 @@ flowchart LR
 
 If the diagram and matrix disagree, update the diagram from the matrix. The matrix wins.
 
-## Traceability Gaps
+## Approved Traceability Gaps
 
-| ID | Description | Affected IDs | Risk | Owner | Action | Status |
-|---|---|---|---|---|---|---|
-| GAP-001 |  | SREQ-001 |  |  |  | Open |
+Approved gaps may authorize behavior only when explicitly recorded here.
+
+| Gap ID | Description | Affected IDs | Owner | Allowed Use / Scope | Approval ID | Approved By | Approval Date / Session | Review / Expiry Condition | Status |
+|---|---|---|---|---|---|---|---|---|---|
+| GAP-001 |  | SREQ-001 / TRACE-001 |  |  | APP-001 |  |  |  | Draft / Approved / Expired |
+
+A `GAP-*` ID is not valid authority unless it has approval proof: approval ID, approver, date/session, allowed use or scope, and review/expiry condition.
+
+Open traceability debt is not authority. It becomes authority only when explicitly approved as a gap.
 
 ## Dark-Code Candidates
 
@@ -173,6 +182,7 @@ Use these status values consistently:
 | `Validated` | Stakeholder need satisfied in context. | Demo, UAT, scenario, operational evidence, telemetry, or accepted validation result. |
 | `Gap` | Missing, stale, contradictory, or unapproved trace link. | Gap description, risk, owner, and next action. |
 | `Deferred` | Valid trace item intentionally postponed. | Owner, reason, expected follow-up, and accepted risk. |
+| `Expired` | Approval or accepted gap is no longer valid. | Expiry condition, owner, and required re-approval or closure action. |
 | `Retired` | Requirement, behavior, or artifact no longer active. | Deprecation or removal rationale and impact analysis. |
 
 ## Lightweight Mode
